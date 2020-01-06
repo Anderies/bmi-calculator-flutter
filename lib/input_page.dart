@@ -33,34 +33,28 @@ class _InputPageState extends State<InputPage> {
             Expanded(
               child: Row(children: <Widget>[
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
+                  child: ReusableCard(
+                    onPress: (){
                       setState(() {
                         selectedGender = GenderType.male;
                       });
                     },
-                    child: ReusableCard(
-                      colour: selectedGender == GenderType.male ? activeCardColor : inactiveCardColor,
-                      cardChild: IconContent(
-                        genderIcon: FontAwesomeIcons.mars,
-                        genderText: 'Male',
-                      ),
+                    colour: selectedGender == GenderType.male ? activeCardColor : inactiveCardColor,
+                    cardChild: IconContent(
+                      genderIcon: FontAwesomeIcons.mars,
+                      genderText: 'Male',
                     ),
                   ),
                 ),
                 Expanded(
-                  child: GestureDetector(
-                    onTap: (){
-                      setState(() {
-                        selectedGender = GenderType.female;
-                      });
+                  child: ReusableCard(
+                    onPress: (){
+                      selectedGender = GenderType.female;
                     },
-                    child: ReusableCard(
-                      colour: selectedGender == GenderType.female ? activeCardColor : inactiveCardColor,
-                      cardChild: IconContent(
-                        genderIcon: FontAwesomeIcons.venus,
-                        genderText: 'Female',
-                      ),
+                    colour: selectedGender == GenderType.female ? activeCardColor : inactiveCardColor,
+                    cardChild: IconContent(
+                      genderIcon: FontAwesomeIcons.venus,
+                      genderText: 'Female',
                     ),
                   ),
                 ),
