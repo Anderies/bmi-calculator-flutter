@@ -8,4 +8,4 @@ const kbottomContainerColor = Color(0xFFEB1555);
 
 const klabelTextStyle = TextStyle(fontSize: 14.0, color: Color(0xFF8D8E98));
 
-const kNumberTextStyle = TextStyle(fontSize: 30.0, fontWeight: FontWeight.w900);
+const kNumberTextStyle = TextStyle(fontSize: 40.0, fontWeight: FontWeight.w900);

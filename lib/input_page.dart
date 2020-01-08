@@ -19,6 +19,7 @@ class _InputPageState extends State<InputPage> {
   Gender selectedGender;
   int height = 180;
   int weight = 60;
+  int age = 20;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -129,14 +130,22 @@ class _InputPageState extends State<InputPage> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              RoundIconButton(),
+                              RoundIconButton(
+                                icon: FontAwesomeIcons.minus,
+                                input: () {
+                                  setState(() {
+                                    weight--;
+                                  });
+                                },
+                              ),
                               SizedBox(width: 10.0),
-                              FloatingActionButton(
-                                backgroundColor: Color(0xFF4C4F5E),
-                                child: Icon(
-                                  Icons.add,
-                                  color: Colors.white,
-                                ),
+                              RoundIconButton(
+                                icon: FontAwesomeIcons.plus,
+                                input: () {
+                                  setState(() {
+                                    weight++;
+                                  });
+                                },
                               ),
                             ],
                           ),
@@ -145,7 +154,43 @@ class _InputPageState extends State<InputPage> {
                     ),
                   ),
                   Expanded(
-                    child: ReusableCard(colour: kactiveCardColor),
+                    child: ReusableCard(
+                      colour: kactiveCardColor,
+                      cardChild: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text('AGE', style: klabelTextStyle),
+                          Text(
+                            age.toString(),
+                            style: kNumberTextStyle,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              RoundIconButton(
+                                icon: FontAwesomeIcons.minus,
+                                input: () {
+                                  setState(() {
+                                    age--;
+                                  });
+                                },
+                              ),
+                              SizedBox(
+                                width: 10.0,
+                              ),
+                              RoundIconButton(
+                                icon: FontAwesomeIcons.plus,
+                                input: () {
+                                  setState(() {
+                                    age++;
+                                  });
+                                },
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -161,10 +206,22 @@ class _InputPageState extends State<InputPage> {
   }
 }
 
-class RoundIconButton extends StatelessWidget{
+class RoundIconButton extends StatelessWidget {
+  final IconData icon;
+  final Function input;
+
+  RoundIconButton({@required this.icon, @required this.input});
+
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return RawMaterialButton(
+      child: Icon(icon),
+      elevation: 6.0,
+      onPressed: input,
+      constraints: BoxConstraints.tightFor(
+        width: 56.0,
+        height: 56.0,
+      ),
       shape: CircleBorder(),
       fillColor: Color(0xFF4C4F5E),
     );
